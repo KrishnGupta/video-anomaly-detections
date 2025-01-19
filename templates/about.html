@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Anomaly Detection Project</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f4f4f4, #e3e3e3);
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #000000, #ff0000);
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            animation: fadeIn 2s;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Container */
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h2, h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        h2::before, h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 4px;
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+            padding: 10px;
+            background: #f7f7f7;
+            border-left: 4px solid #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+        }
+
+        ul li {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fdfdfd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 3s ease-in-out;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #19191a;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            background-color: #f7f7f7;
+            font-size: 1.1rem;
+        }
+
+        table tbody tr:hover {
+            background-color: #e2e2e2;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #0062cc, #0056b3);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #000000, #ff0000);
+        }
+
+        /* Download Section */
+        .download-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e0e0e0, #f4f4f4);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .download-section a {
+            color: #0a0a0a;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .download-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #000000, #ff0000);;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            table, th, td {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>About the Anomaly Detection Project</h1>
+</header>
+
+<div class="container">
+    <h2>Project Goal</h2>
+    <p>
+        The goal of this project is to develop a robust anomaly detection system for video surveillance using deep learning models. This system aims to detect various abnormal activities such as theft, fighting, arson, and other criminal actions in real-time from surveillance videos. The anomaly detection model is trained on a diverse dataset and is capable of distinguishing between normal and anomalous behavior.
+    </p>
+
+    <h2>How I Achieved This</h2>
+    <p>
+        To accomplish this, I experimented with several state-of-the-art deep learning architectures for video classification. The models used include:
+    </p>
+    <ul class="models-list">
+        <li><strong>EfficientNetB7</strong></li>
+        <li><strong>MobileNetV2</strong></li>
+        <li><strong>InceptionNetV3</strong></li>
+        <li><strong>ConvLSTM2D</strong> with Batch Normalization and Dropout</li>
+        <li><strong>GRU-based sequence models</strong></li>
+    </ul>
+
+    <h2>Performance of Models</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Training Accuracy</th>
+                <th>Validation Accuracy</th>
+                <th>F1 Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>EfficientNetB7</td>
+                <td>93.29%</td>
+                <td>77%</td>
+                <td>0.82</td>
+            </tr>
+            <tr>
+                <td>MobileNetV2</td>
+                <td>93.50%</td>
+                <td>58%</td>
+                <td>0.69</td>
+            </tr>
+            <tr>
+                <td>InceptionV3</td>
+                <td>90.80%</td>
+                <td>63%</td>
+                <td>0.69</td>
+            </tr>
+            <tr>
+                <td>GRU with CNN Features</td>
+                <td>65.67%</td>
+                <td>40%</td>
+                <td>0.39</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Dataset Overview</h2>
+    <p>
+        The dataset used for this project is from the <strong>UCF-Crime Dataset</strong>, which consists of various videos categorized into 14 classes:
+    </p>
+    <ul class="dataset-list">
+        <li>Abuse</li>
+        <li>Arson</li>
+        <li>Burglary</li>
+        <li>Fighting</li>
+        <li>Road Accidents</li>
+        <li>Shooting</li>
+        <li>Stealing</li>
+        <li>Arrest</li>
+        <li>Assault</li>
+        <li>Explosion</li>
+        <li>Normal</li>
+        <li>Robbery</li>
+        <li>Shoplifting</li>
+        <li>Vandalism</li>
+    </ul>
+
+    <div class="download-section">
+        <p>For more information and to download the dataset, visit the following link:</p>
+        <a href="https://www.dropbox.com/sh/75v5ehq4cdg5g5g/AABvnJSwZI7zXb8_myBA0CLHa?e=3&dl=0" target="_blank">Download the UCF-Crime Dataset</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2024 Security Dashboard. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

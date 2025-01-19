@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div class="chart-container">
+    <canvas id="alertChart"></canvas>
+</div>
+
+<div class="alert-history">
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Data from Flask
+    const labels = {{ alert_labels | tojson }};
+    const data = {{ alert_data | tojson }};
+
+    const ctx = document.getElementById('alertChart').getContext('2d');
+    const alertChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Alerts',
+                data: data,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

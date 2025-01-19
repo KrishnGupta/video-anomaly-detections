@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Suspicious Behavior Detection Dashboard</h1>
+
+<div class="upload-container">
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+        <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Upload Video
+        </label>
+        <input id="file-upload" type="file" name="file" onchange="validateFileType()"/>
+        <span id="file-name"></span>
+        <button type="submit" class="btn-upload">Analyze</button>
+    </form>
+</div>
+
+<div id="loader" class="loader-overlay" style="display: none;">
+    <div class="loader"></div>
+    <p>Analyzing... Please wait.</p>
+</div>
+
+{% if result %}
+    <h2>Analysis Result</h2>
+    <div class="result-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Behavior</th>
+                    <th>Confidence</th>
+                    <th>Alert Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ result.time }}</td>
+                    <td>{{ result.behavior }}</td>
+                    <td>{{ result.confidence }}</td>
+                    <td>{{ result.alert_status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Uploaded File</h2>
+    <div class="uploaded-file">
+        {% if file_url.endswith(('mp4', 'webm', 'ogg')) %}
+            <video controls style="max-width: 100%; height: auto;">
+                <source src="{{ file_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <p>Unsupported file type.</p>
+        {% endif %}
+    </div>
+
+    {% if result.behavior != 'Normal' %}
+    <div class="alert-overlay">
+        <div class="alert-content">
+            <h2>Secure Alert!</h2>
+            <p>Behavior detected: {{ result.behavior }}. Immediate action required!</p>
+            <button id="ok-button">OK</button>
+        </div>
+    </div>
+    <audio id="alert-sound" src="{{ url_for('static', filename='alert.mp3') }}" autoplay loop></audio>
+    {% endif %}
+{% endif %}
+
+<script src="{{ url_for('static', filename='scripts/dashboard.js') }}"></script>
+
+<script>
+    function validateFileType() {
+        const fileInput = document.getElementById('file-upload');
+        const fileName = fileInput.value.split('\\').pop();
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        const supportedFormats = ['mp4', 'webm', 'ogg'];
+
+        if (!supportedFormats.includes(fileExtension)) {
+            alert('Please upload a video file (mp4, webm, ogg only).');
+            fileInput.value = ''; // Reset the file input
+            document.getElementById('file-name').innerText = '';
+        } else {
+            document.getElementById('file-name').innerText = fileName;
+        }
+    }
+
+    function showLoader() {
+        document.getElementById('loader').style.display = 'flex';
+        document.body.style.pointerEvents = 'none'; // Disable all interactions
+    }
+</script>
+
+<style>
+    .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 8px solid #3498db;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .alert-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        color: white;
+    }
+
+    .alert-content {
+        text-align: center;
+        padding: 20px;
+        background-color: #d9534f;
+        border-radius: 5px;
+    }
+
+    .alert-content button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: white;
+        color: #d9534f;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

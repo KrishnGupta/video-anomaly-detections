@@ -1,0 +1,66 @@
+/* Add styles for the alert overlay */
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.8); /* Red background with transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    z-index: 1000;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.alert-overlay.flip {
+    animation: flip 1s infinite; /* Flip animation */
+}
+
+.alert-content {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #fff;
+    background-color: #ff0000;
+    border-radius: 10px;
+}
+
+.alert-overlay h2 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.alert-overlay p {
+    font-size: 18px;
+}
+
+.alert-content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.alert-content button:hover {
+    background-color: #444;
+}
+
+/* Flip animation */
+@keyframes flip {
+    0% { transform: rotateX(0); }
+    50% { transform: rotateX(180deg); }
+    100% { transform: rotateX(0); }
+}
+
+/* Show overlay when confidence is low */
+.alert-overlay {
+    visibility: visible;
+    opacity: 1;
+}

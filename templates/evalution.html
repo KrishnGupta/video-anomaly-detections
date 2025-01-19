@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deshboard.css') }}">
+    <title>Model Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: linear-gradient(135deg, #000000, #ff0000);
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar .nav-links li {
+            margin-left: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f4b400;
+        }
+
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #272927;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #151615;
+            color: white;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .charts img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .summary p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="{{ url_for('index') }}" class="logo">Security Dashboard</a>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('alerts') }}">Alerts</a></li>
+                    <li><a href="{{ url_for('graphs') }}">View Graphs</a></li>
+                    <li><a href="{{ url_for('model_evalution') }}">Model Evalution</a></li>
+                    <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Classification Report</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>F1-Score</th>
+                    <th>Support</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Abuse</td><td>0.60</td><td>1.00</td><td>0.75</td><td>3</td></tr>
+                <tr><td>Arrest</td><td>1.00</td><td>0.67</td><td>0.80</td><td>3</td></tr>
+                <tr><td>Arson</td><td>1.00</td><td>0.67</td><td>0.80</td><td>3</td></tr>
+                <tr><td>Assault</td><td>1.00</td><td>0.75</td><td>0.86</td><td>4</td></tr>
+                <tr><td>Burglary</td><td>0.67</td><td>0.67</td><td>0.67</td><td>3</td></tr>
+                <tr><td>Explosion</td><td>0.75</td><td>1.00</td><td>0.86</td><td>3</td></tr>
+                <tr><td>Fighting</td><td>1.00</td><td>1.00</td><td>1.00</td><td>4</td></tr>
+                <tr><td>Normal</td><td>1.00</td><td>0.67</td><td>0.80</td><td>3</td></tr>
+                <tr><td>RoadAccidents</td><td>1.00</td><td>1.00</td><td>1.00</td><td>3</td></tr>
+                <tr><td>Robbery</td><td>0.67</td><td>0.67</td><td>0.67</td><td>3</td></tr>
+                <tr><td>Shooting</td><td>1.00</td><td>0.75</td><td>0.86</td><td>4</td></tr>
+                <tr><td>Shoplifting</td><td>0.75</td><td>1.00</td><td>0.86</td><td>3</td></tr>
+                <tr><td>Stealing</td><td>1.00</td><td>1.00</td><td>1.00</td><td>3</td></tr>
+                <tr><td>Vandalism</td><td>0.50</td><td>0.67</td><td>0.57</td><td>3</td></tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Accuracy</th>
+                    <td colspan="4">0.82</td>
+                </tr>
+                <tr>
+                    <th>Macro avg</th>
+                    <td>0.85</td><td>0.82</td><td>0.82</td><td>45</td>
+                </tr>
+                <tr>
+                    <th>Weighted avg</th>
+                    <td>0.86</td><td>0.82</td><td>0.83</td><td>45</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="summary">
+            <p><strong>Model Used:</strong> EfficientNetB7 + GRU</p>
+            <p><strong>Training Accuracy:</strong> 93.29%</p>
+            <p><strong>Validation Accuracy:</strong> 77.78%</p>
+        </div>
+
+        <div class="charts">
+            <div>
+                <h2>Training and Validation Accuracy</h2>
+                <img src="{{ url_for('static', filename='accuracy_plot.png') }}" alt="Training and Validation Accuracy">
+            </div>
+            <div>
+                <h2>Training and Validation Loss</h2>
+                <img src="{{ url_for('static', filename='loss_plot.png') }}" alt="Training and Validation Loss">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Security Dashboard. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

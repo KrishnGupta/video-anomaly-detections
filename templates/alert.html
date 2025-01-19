@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Alert History</h1>
+
+<div class="alert-history">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Behavior</th>
+                    <th>Confidence</th>
+                    <th>Alert Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alert in alerts %}
+                <tr class="fade-in">
+                    <td>{{ alert.time }}</td>
+                    <td>{{ alert.behavior }}</td>
+                    <td>{{ alert.confidence }}</td>
+                    <td>{{ alert.alert_status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .alert-history {
+        max-width: 100%;
+        margin: 20px 0;
+    }
+
+    .table-container {
+        max-height: 400px; /* Adjust the height as needed */
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding-bottom: 1px; /* Ensures last rows are visible */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #000; /* Make the table header black */
+        color: white; /* Set text color to white for contrast */
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Ensure the table rows are fully visible */
+    .table-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+    }
+
+    .table-container::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
+</style>
+{% endblock %}
