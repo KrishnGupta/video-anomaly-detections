@@ -236,9 +236,10 @@ VIDEO_FOLDER = 'static'
 # List of folders to exclude (like css and js)
 EXCLUDE_FOLDERS = ['css', 'js']
 
+
 @app.route('/')
-def home():
-  return "hello krishna"
+def index():
+    return render_template('about.html')
 
 @app.route('/gallery')
 def gallery():
